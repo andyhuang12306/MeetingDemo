@@ -18,6 +18,7 @@
                     android:layout_width="30dp"
                     android:layout_height="20dp"/>
                 <TextView
+                    android:fontFamily="Roboto"
                     android:layout_marginLeft="10dp"
                     android:gravity="center_vertical"
                     android:textColor="@android:color/white"
@@ -39,6 +40,7 @@
                     android:layout_width="30dp"
                     android:layout_height="20dp"/>
                 <TextView
+                    android:fontFamily="Roboto"
                     android:layout_marginLeft="10dp"
                     android:gravity="center_vertical"
                     android:textColor="@android:color/white"

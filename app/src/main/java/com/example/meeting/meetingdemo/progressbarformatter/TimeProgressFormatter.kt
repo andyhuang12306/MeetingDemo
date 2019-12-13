@@ -7,6 +7,12 @@ class TimeProgressFormatter : CircleProgressBar.ProgressFormatter {
         val hour = (max - progress) / 60
         val seconds = (max - progress) - hour * 60
         if(progress>=max){return ""}
-        return "${hour}:${seconds}"
+        var secondStr:String
+        secondStr = if(seconds<10){
+            seconds.toString()+"0"
+        }else{
+            seconds.toString()
+        }
+        return "${hour}:${secondStr}"
     }
 }

@@ -7,6 +7,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
                 <TextView
+                    android:fontFamily="Roboto"
                     android:gravity="center"
                     android:text="@string/extend_meeting"
                     android:textSize="20sp"
@@ -70,6 +71,7 @@
                     android:layout_height="80dp">
 
                         <TextView
+                            android:fontFamily="Roboto"
                             android:background="@drawable/border_background_gray"
                             android:gravity="center"
                             android:id="@+id/bt_extend_confirm"
@@ -78,6 +80,7 @@
                             android:layout_width="200dp"
                             android:layout_height="50dp"/>
                         <TextView
+                            android:fontFamily="Roboto"
                             android:layout_marginLeft="50dp"
                             android:background="@drawable/border_only"
                             android:gravity="center"

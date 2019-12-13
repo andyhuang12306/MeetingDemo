@@ -6,7 +6,7 @@
     <color name="color_free">#009933</color>
     <color name="color_booked">#cc0066</color>
     <color name="color_waiting">#ff9900</color>
-    <color name="color_text_default">#36383b</color>
+    <color name="color_text_default">#808080</color>
     <color name="color_gray">#303330</color>
     <color name="black_semi_transparent">#B2000000</color>
     <color name="background">#e5e5e5</color>

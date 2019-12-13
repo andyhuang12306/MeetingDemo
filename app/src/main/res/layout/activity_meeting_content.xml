@@ -5,9 +5,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="meeting"
             type="com.example.meeting.meetingdemo.model.MeetingContent" />
+
         <variable
             name="clickHandler"
             type="com.example.meeting.meetingdemo.BookOnclickHandler" />
@@ -18,181 +20,182 @@
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:layout_above="@+id/bottom_layout"
-            android:layout_below="@+id/title_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_above="@+id/bottom_layout"
+            android:layout_below="@+id/title_layout"
             android:orientation="horizontal">
 
             <RelativeLayout
                 android:id="@+id/rl_free"
-                android:layout_weight="0.4"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_weight="0.4">
 
                 <ImageView
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/bg"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/bg" />
 
                 <LinearLayout
                     android:id="@+id/ll_bg_color"
-                    android:background="@{meeting.backgroundColor}"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:alpha="0.8"
-                    android:padding="40dp"
+                    android:background="@{meeting.backgroundColor}"
                     android:gravity="center_horizontal"
                     android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:padding="40dp">
 
                     <LinearLayout
-                        android:orientation="horizontal"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
                         <TextView
                             android:id="@+id/tv_currentTime"
-                            android:textSize="30sp"
-                            android:textColor="@android:color/white"
-                            android:text="@{meeting.currentTime}"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:fontFamily="Roboto"
+                            android:text="@{meeting.currentTime}"
+                            android:textColor="@android:color/white"
+                            android:textSize="30sp" />
 
                         <TextView
-                            android:layout_marginLeft="15dp"
                             android:id="@+id/tv_currentDate"
-                            android:textSize="24sp"
-                            android:textColor="@android:color/white"
-                            android:text="@{meeting.currentDate}"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:fontFamily="Roboto"
+                            android:text="@{meeting.currentDate}"
+                            android:textColor="@android:color/white"
+                            android:textSize="24sp" />
 
                     </LinearLayout>
 
                     <LinearLayout
-                        android:padding="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:gravity="center_horizontal"
                         android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:padding="10dp">
 
                         <TextView
                             android:id="@+id/tv_status"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="Roboto"
                             android:text="@{meeting.status}"
                             android:textColor="@android:color/white"
-                            android:textSize="46sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:textSize="46sp" />
 
-                        <androidx.cardview.widget.CardView
+                        <ImageView
+                            android:translationZ="@android:dimen/app_icon_size"
+                            android:id="@+id/icon_book"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:layout_marginTop="30dp"
-                            android:id="@+id/iv_book"
-                            android:onClick="@{clickHandler::onClickToBook}"
-                            app:cardCornerRadius="60dp"
-                            app:cardBackgroundColor="@android:color/transparent"
-                            android:layout_width="120dp"
-                            android:layout_height="120dp">
-                            <ImageView
-                                android:visibility="@{meeting.statusFree}"
-                                android:id="@+id/icon_book"
-                                android:alpha="0.5"
-                                android:src="@drawable/icon_book"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"/>
-                            <ImageView
-                                android:visibility="@{meeting.statusWaiting}"
-                                android:id="@+id/icon_waiting"
-                                android:alpha="0.5"
-                                android:src="@drawable/icon_wait"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"/>
+                            android:src="@drawable/icon_book"
+                            android:visibility="@{meeting.statusFree}" />
 
-                            <com.dinuscxj.progressbar.CircleProgressBar
-                                android:visibility="@{meeting.statusBooked}"
-                                android:id="@+id/line_progress_booked"
-                                app:style="solid_line"
-                                app:progress_text_color="@android:color/white"
-                                app:progress_text_size="20sp"
-                                app:progress_stroke_width="5dp"
-                                app:line_width="4dp"
-                                app:line_count="30"
-                                app:progress_shader="sweep"
-                                app:progress_start_color="@android:color/white"
-                                app:progress_end_color="@android:color/white"
-                                app:progress_background_color="@android:color/transparent"
-                                app:progress_stroke_cap="round"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent" />
+                        <ImageView
+                            android:id="@+id/icon_waiting"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="30dp"
+                            android:src="@drawable/icon_wait"
+                            android:visibility="@{meeting.statusWaiting}" />
 
-                            <com.dinuscxj.progressbar.CircleProgressBar
-                                android:visibility="@{meeting.statusWaiting}"
-                                android:id="@+id/line_progress_waiting"
-                                app:style="solid_line"
-                                app:progress_text_color="@android:color/white"
-                                app:progress_text_size="20sp"
-                                app:progress_stroke_width="5dp"
-                                app:line_width="4dp"
-                                app:line_count="30"
-                                app:progress_shader="sweep"
-                                app:progress_start_color="@android:color/white"
-                                app:progress_end_color="@android:color/white"
-                                app:progress_background_color="@android:color/transparent"
-                                app:progress_stroke_cap="round"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent" />
+                        <com.dinuscxj.progressbar.CircleProgressBar
+                            android:id="@+id/line_progress_booked"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:visibility="@{meeting.statusBooked}"
+                            app:line_count="30"
+                            app:line_width="4dp"
+                            app:progress_background_color="@color/white"
+                            app:progress_end_color="@android:color/white"
+                            app:progress_shader="sweep"
+                            app:progress_start_color="@android:color/white"
+                            app:progress_stroke_cap="round"
+                            app:progress_stroke_width="5dp"
+                            app:progress_text_color="@android:color/white"
+                            app:progress_text_size="20sp"
+                            app:style="solid_line" />
 
-                        </androidx.cardview.widget.CardView>
+                        <com.dinuscxj.progressbar.CircleProgressBar
+                            android:id="@+id/line_progress_waiting"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:visibility="@{meeting.statusWaiting}"
+                            app:line_count="30"
+                            app:line_width="4dp"
+                            app:progress_background_color="@color/white"
+                            app:progress_end_color="@android:color/white"
+                            app:progress_shader="sweep"
+                            app:progress_start_color="@android:color/white"
+                            app:progress_stroke_cap="round"
+                            app:progress_stroke_width="5dp"
+                            app:progress_text_color="@android:color/white"
+                            app:progress_text_size="20sp"
+                            app:style="solid_line" />
+
 
                         <TextView
-                            android:visibility="@{meeting.statusFree}"
-                            android:layout_marginTop="30dp"
                             android:id="@+id/tv_book_now"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="30dp"
+                            android:fontFamily="Roboto"
                             android:text="Book now"
-                            android:textSize="34sp"
                             android:textColor="@android:color/white"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:textSize="34sp"
+                            android:visibility="@{meeting.statusFree}" />
 
                         <TextView
-                            android:visibility="@{meeting.statusBooked}"
-                            android:layout_marginTop="15dp"
                             android:id="@+id/tv_msg_booked"
-                            android:text="@{meeting.msg}"
-                            android:textSize="34sp"
-                            android:textColor="@android:color/white"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:fontFamily="Roboto"
+                            android:text="@{meeting.msg}"
+                            android:textColor="@android:color/white"
+                            android:textSize="34sp"
+                            android:visibility="@{meeting.statusBooked}" />
 
                         <TextView
-                            android:visibility="@{meeting.statusWaiting}"
-                            android:layout_marginTop="15dp"
                             android:id="@+id/tv_msg_waiting"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:fontFamily="Roboto"
                             android:text="@{meeting.msg}"
+                            android:textColor="@android:color/white"
                             android:textSize="34sp"
-                            android:textColor="@android:color/white"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:visibility="@{meeting.statusWaiting}" />
 
                         <TextView
-                            android:visibility="@{meeting.statusBooked}"
-                            android:layout_marginTop="15dp"
                             android:id="@+id/tv_organizer_booked"
-                            android:text="@{`Organizer: `+meeting.organizer}"
-                            android:textSize="26sp"
-                            android:textColor="@android:color/white"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:fontFamily="Roboto"
+                            android:text="@{`Organizer: `+meeting.organizer}"
+                            android:textColor="@android:color/white"
+                            android:textSize="26sp"
+                            android:visibility="@{meeting.statusBooked}" />
 
                         <TextView
-                            android:visibility="@{meeting.statusWaiting}"
-                            android:layout_marginTop="15dp"
                             android:id="@+id/tv_organizer_waiting"
-                            android:text="@{`Organizer: `+meeting.organizer}"
-                            android:textSize="26sp"
-                            android:textColor="@android:color/white"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:fontFamily="Roboto"
+                            android:text="@{`Organizer: `+meeting.organizer}"
+                            android:textColor="@android:color/white"
+                            android:textSize="26sp"
+                            android:visibility="@{meeting.statusWaiting}" />
 
                     </LinearLayout>
 
@@ -201,50 +204,57 @@
             </RelativeLayout>
 
             <LinearLayout
-                android:layout_weight="0.6"
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_weight="0.6"
+                android:orientation="vertical">
+
                 <TextView
-                    android:paddingLeft="20dp"
-                    android:background="@android:color/darker_gray"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:layout_centerInParent="true"
+                    android:fontFamily="Roboto"
+                    android:gravity="end|center_vertical"
+                    android:paddingRight="20dp"
                     android:text="Today"
-                    android:textSize="26sp"/>
+                    android:textSize="26sp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:background="@color/color_text_default" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
                     <ImageView
-                        android:visibility="@{meeting.statusBooked}"
-                        android:layout_marginTop="32dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="45dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/red"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"/>
+                        android:visibility="@{meeting.statusBooked}" />
 
                     <ImageView
-                        android:visibility="@{meeting.statusWaiting}"
-                        android:layout_marginTop="32dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="45dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/yellow"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"/>
+                        android:visibility="@{meeting.statusWaiting}" />
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:paddingLeft="24dp"
                         android:id="@+id/recyclerView"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        tools:listitem="@layout/item_meeting_content"/>
+                        android:paddingLeft="24dp"
+                        tools:listitem="@layout/item_meeting_content" />
                 </RelativeLayout>
 
 
             </LinearLayout>
-
 
 
         </LinearLayout>
@@ -265,26 +275,28 @@
             fab:fab_labelsPosition="left">
 
             <com.getbase.floatingactionbutton.FloatingActionButton
-                android:onClick="@{clickHandler.onClickToBook}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="@{clickHandler::onClickToBook}"
                 fab:fab_colorNormal="@color/colorPrimary"
-                fab:fab_title="Book now"
-                fab:fab_colorPressed="@color/colorPrimary"/>
+                fab:fab_colorPressed="@color/colorPrimary"
+                fab:fab_title="Book now" />
 
             <com.getbase.floatingactionbutton.FloatingActionButton
-                android:onClick="@{clickHandler.onClickExtendMeeting}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="@{clickHandler::onClickExtendMeeting}"
                 fab:fab_colorNormal="@color/colorPrimary"
+                fab:fab_colorPressed="@color/colorPrimary"
                 fab:fab_size="mini"
-                fab:fab_title="Extend a meeting"
-                fab:fab_colorPressed="@color/colorPrimary"/>
+                fab:fab_title="Extend a meeting" />
 
         </com.getbase.floatingactionbutton.FloatingActionsMenu>
 
-        <include layout="@layout/title_activity"
-            android:id="@+id/title_layout"/>
+        <include
+            android:id="@+id/title_layout"
+            layout="@layout/title_activity" />
+
         <include layout="@layout/bottom_activity" />
 
     </RelativeLayout>

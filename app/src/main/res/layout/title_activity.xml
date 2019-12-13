@@ -10,6 +10,7 @@
     tools:showIn="@layout/activity_meeting_content">
 
     <TextView
+        android:fontFamily="Roboto"
         android:id="@+id/room_name"
         android:layout_alignParentLeft="true"
         android:text="@string/room_name"

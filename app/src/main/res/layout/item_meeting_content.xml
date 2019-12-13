@@ -14,29 +14,33 @@
         android:orientation="vertical"
         android:padding="5dp">
 
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <TextView
+                android:fontFamily="Roboto"
                 android:id="@+id/tv_startTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:text="@{meeting.startTime}"
                 android:textColor="@color/color_text_default"
-                android:textSize="18sp" />
+                android:textSize="24sp" />
 
             <TextView
+                android:fontFamily="Roboto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:text=" -> "
                 android:textColor="@color/color_text_default"
-                android:textSize="18sp" />
+                android:textSize="24sp" />
 
             <TextView
+                android:fontFamily="Roboto"
                 android:id="@+id/tv_endTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -47,6 +51,7 @@
         </LinearLayout>
 
         <TextView
+            android:fontFamily="Roboto"
             android:id="@+id/tv_topic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -57,6 +62,7 @@
             android:textStyle="bold" />
 
         <TextView
+            android:fontFamily="Roboto"
             android:id="@+id/tv_bookedBy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -64,6 +70,10 @@
             android:text="@{meeting.bookedBy}"
             android:textColor="@color/color_text_default"
             android:textSize="24sp" />
+
+        <View android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="@color/color_text_default"/>
 
     </LinearLayout>
 

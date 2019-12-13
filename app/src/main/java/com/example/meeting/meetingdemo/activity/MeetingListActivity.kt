@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.TextView
-import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ObservableField
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -34,7 +33,7 @@ class MeetingListActivity : BaseActivity(),
     Response.Listener<DetailModel>, Response.ErrorListener {
 
     private var meetings = ArrayList<Meeting>()
-    private val formatTime = SimpleDateFormat("hh:mm")
+    private val formatTime = SimpleDateFormat("hh:mm a")
     private val formatDate = SimpleDateFormat("EEE, d MMM yyyy")
     private val bookOnclickHandler = BookOnclickHandler()
 
@@ -234,11 +233,14 @@ class MeetingListActivity : BaseActivity(),
         }
         val events = response?.Events
         if(events!=null){
+            val eventIds=ArrayList<String>()
+            val deletedMeetings=ArrayList<Meeting>()
             for(event in events){
                 val dateEnd = DateUtil.parseDate(event.End)
                 val date = Date()
                 if(dateEnd.after(date)){
                     val id = event._id
+                    eventIds.add(id)
                     var goON=true
                     for(meet in meetings){
                         if(meet._id==id){
@@ -250,10 +252,22 @@ class MeetingListActivity : BaseActivity(),
                         val topic = event.Name
                         val hoursStart = dateStart.hours
                         val minutesStart = dateStart.minutes
-                        val startTime=String.format("%s:%s", hoursStart, minutesStart)
+                        var minutesStartS: String
+                        minutesStartS=if(minutesStart>=10){
+                            minutesStart.toString()
+                        }else{
+                            minutesStart.toString()+"0"
+                        }
+                        val startTime=String.format("%s:%s", hoursStart, minutesStartS)
                         val hoursEnd = dateEnd.hours
                         val minutesEnd = dateEnd.minutes
-                        val endTime=String.format("%s:%s", hoursEnd, minutesEnd)
+                        var minutesEndS: String
+                        minutesEndS=if(minutesStart>=10){
+                            minutesEnd.toString()
+                        }else{
+                            minutesEnd.toString()+"0"
+                        }
+                        val endTime=String.format("%s:%s", hoursEnd, minutesEndS)
                         val organizer = event.Organizer.DisplayName
                         val meeting = Meeting(
                             id,
@@ -271,6 +285,12 @@ class MeetingListActivity : BaseActivity(),
                 }
             }
             meetings.sortBy { it.startTime }
+            meetings.map {
+                if (!eventIds.contains(it._id)) {
+                    deletedMeetings.add(it)
+                }
+            }
+            meetings.removeAll(deletedMeetings)
             recyclerView.adapter?.notifyDataSetChanged()
         }
         Log.d("MeetingList", response?.Events.toString())

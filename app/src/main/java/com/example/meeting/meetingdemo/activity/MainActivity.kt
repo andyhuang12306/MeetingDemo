@@ -68,7 +68,6 @@ class MainActivity : BaseActivity(),
     override fun onSuccess(data: String) {
         val intent=Intent(this, MeetingListActivity::class.java)
         startActivity(intent)
-        finish()
     }
 
     override fun onFailure(code: String) {
