@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="pairCode"
+            type="com.example.meeting.meetingdemo.model.PairCode" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_below="@+id/title_layout"
+            android:layout_above="@+id/bottom_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{pairCode.code}"
+                android:textSize="60sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+
+        <include layout="@layout/title_activity" />
+        <include layout="@layout/bottom_activity" />
+
+    </RelativeLayout>
+
+</layout>

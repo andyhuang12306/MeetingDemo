@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">MeetingDemo</string>
+    <string name="scan_qr_code">Scan by mobile</string>
+    <string name="book_now">Book now</string>
+    <string name="extend_meeting">Extend meeting</string>
+    <string name="extend_fifteen">15</string>
+    <string name="extend_thirty">30</string>
+    <string name="extend_four_five">45</string>
+    <string name="extend_sixty">60</string>
+    <string name="extend_confirm">confirm</string>
+    <string name="extend_cancel">cancel</string>
+    <string name="room_name">房间名字</string>
+</resources>
