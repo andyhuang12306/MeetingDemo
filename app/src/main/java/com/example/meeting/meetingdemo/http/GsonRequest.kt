@@ -16,10 +16,10 @@ import java.nio.charset.Charset
 
 class GsonRequest<T>(
     url: String,
-    private val clazz: Class<T>,
+    private val clazz: Class<T>?,
     private val context: Activity,
-    private val listener: Response.Listener<T>,
-    errorListener: Response.ErrorListener
+    private val listener: Response.Listener<T>?,
+    errorListener: Response.ErrorListener?
 ) : Request<T>(Method.GET, url, errorListener) {
     private val gson = Gson()
 
@@ -31,7 +31,7 @@ class GsonRequest<T>(
         return header
     }
 
-    override fun deliverResponse(response: T) = listener.onResponse(response)
+    override fun deliverResponse(response: T) = listener!!.onResponse(response)
 
     override fun parseNetworkResponse(response: NetworkResponse?): Response<T> {
         return try {

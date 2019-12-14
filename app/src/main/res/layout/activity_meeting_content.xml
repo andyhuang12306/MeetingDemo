@@ -6,6 +6,8 @@
 
     <data>
 
+        <import type="android.view.View"/>
+
         <variable
             name="meeting"
             type="com.example.meeting.meetingdemo.model.MeetingContent" />
@@ -38,12 +40,16 @@
                     android:scaleType="centerCrop"
                     android:src="@drawable/bg" />
 
+                <RelativeLayout
+                    android:alpha="0.8"
+                    android:background="@{meeting.backgroundColor}"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
                 <LinearLayout
                     android:id="@+id/ll_bg_color"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:alpha="0.8"
-                    android:background="@{meeting.backgroundColor}"
                     android:gravity="center_horizontal"
                     android:orientation="vertical"
                     android:padding="40dp">
@@ -78,8 +84,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center_horizontal"
-                        android:orientation="vertical"
-                        android:padding="10dp">
+                        android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/tv_status"
@@ -90,56 +95,83 @@
                             android:textColor="@android:color/white"
                             android:textSize="46sp" />
 
+                        <TextView
+                            android:id="@+id/tv_time_for_confirm"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="Roboto"
+                            android:textColor="@android:color/white"
+                            android:textSize="24sp" />
+
                         <ImageView
+                            android:clickable="@{meeting.statusFree==View.GONE?false:true}"
+                            android:onClick="@{clickHandler::onClickToBook}"
                             android:translationZ="@android:dimen/app_icon_size"
                             android:id="@+id/icon_book"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
                             android:layout_marginTop="30dp"
                             android:src="@drawable/icon_book"
                             android:visibility="@{meeting.statusFree}" />
 
-                        <ImageView
-                            android:id="@+id/icon_waiting"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginTop="30dp"
-                            android:src="@drawable/icon_wait"
-                            android:visibility="@{meeting.statusWaiting}" />
-
-                        <com.dinuscxj.progressbar.CircleProgressBar
-                            android:id="@+id/line_progress_booked"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                        <RelativeLayout
                             android:visibility="@{meeting.statusBooked}"
-                            app:line_count="30"
-                            app:line_width="4dp"
-                            app:progress_background_color="@color/white"
-                            app:progress_end_color="@android:color/white"
-                            app:progress_shader="sweep"
-                            app:progress_start_color="@android:color/white"
-                            app:progress_stroke_cap="round"
-                            app:progress_stroke_width="5dp"
-                            app:progress_text_color="@android:color/white"
-                            app:progress_text_size="20sp"
-                            app:style="solid_line" />
+                            android:layout_marginTop="30dp"
+                            android:layout_width="120dp"
+                            android:layout_height="120dp">
+                            <com.dinuscxj.progressbar.CircleProgressBar
+                                android:id="@+id/line_progress_booked"
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
+                                app:line_count="30"
+                                app:line_width="4dp"
+                                app:progress_background_color="@color/color_text_default"
+                                app:progress_end_color="@android:color/white"
+                                app:progress_shader="sweep"
+                                app:progress_start_color="@android:color/white"
+                                app:progress_stroke_cap="round"
+                                app:progress_stroke_width="5dp"
+                                app:progress_text_color="@android:color/white"
+                                app:progress_text_size="20sp"
+                                app:style="solid_line" />
+                            <ImageView
+                                android:clickable="@{meeting.statusBooked==View.GONE?false:true}"
+                                android:layout_width="116dp"
+                                android:layout_centerInParent="true"
+                                android:layout_height="116dp"
+                                android:src="@drawable/icon_wait" />
+                        </RelativeLayout>
 
-                        <com.dinuscxj.progressbar.CircleProgressBar
-                            android:id="@+id/line_progress_waiting"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                        <RelativeLayout
                             android:visibility="@{meeting.statusWaiting}"
-                            app:line_count="30"
-                            app:line_width="4dp"
-                            app:progress_background_color="@color/white"
-                            app:progress_end_color="@android:color/white"
-                            app:progress_shader="sweep"
-                            app:progress_start_color="@android:color/white"
-                            app:progress_stroke_cap="round"
-                            app:progress_stroke_width="5dp"
-                            app:progress_text_color="@android:color/white"
-                            app:progress_text_size="20sp"
-                            app:style="solid_line" />
+                            android:layout_marginTop="30dp"
+                            android:layout_width="120dp"
+                            android:layout_height="120dp">
+                            <com.dinuscxj.progressbar.CircleProgressBar
+                                android:id="@+id/line_progress_waiting"
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
+                                app:line_count="30"
+                                app:line_width="4dp"
+                                app:progress_background_color="@color/color_waiting"
+                                app:progress_end_color="@android:color/white"
+                                app:progress_shader="sweep"
+                                app:progress_start_color="@android:color/white"
+                                app:progress_stroke_cap="round"
+                                app:progress_stroke_width="5dp"
+                                app:progress_text_color="@android:color/white"
+                                app:progress_text_size="20sp"
+                                app:style="solid_line" />
+
+                            <ImageView
+                                android:clickable="@{meeting.statusWaiting==View.GONE?false:true}"
+                                android:onClick="@{clickHandler::onClickConfirm}"
+                                android:id="@+id/icon_waiting"
+                                android:layout_width="116dp"
+                                android:layout_height="116dp"
+                                android:layout_centerInParent="true"
+                                android:src="@drawable/icon_wait" />
+                        </RelativeLayout>
 
 
                         <TextView
@@ -285,6 +317,15 @@
             <com.getbase.floatingactionbutton.FloatingActionButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="@{clickHandler::onClickConfirm}"
+                fab:fab_colorNormal="@color/colorPrimary"
+                fab:fab_colorPressed="@color/colorPrimary"
+                fab:fab_size="mini"
+                fab:fab_title="Confirm a meeting" />
+
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:onClick="@{clickHandler::onClickExtendMeeting}"
                 fab:fab_colorNormal="@color/colorPrimary"
                 fab:fab_colorPressed="@color/colorPrimary"
@@ -297,7 +338,8 @@
             android:id="@+id/title_layout"
             layout="@layout/title_activity" />
 
-        <include layout="@layout/bottom_activity" />
+        <include
+            layout="@layout/bottom_activity" />
 
     </RelativeLayout>
 

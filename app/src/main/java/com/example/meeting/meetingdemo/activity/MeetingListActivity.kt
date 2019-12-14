@@ -29,10 +29,10 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-class MeetingListActivity : BaseActivity(),
+open class MeetingListActivity : BaseActivity(),
     Response.Listener<DetailModel>, Response.ErrorListener {
 
-    private var meetings = ArrayList<Meeting>()
+    open var meetings = ArrayList<Meeting>()
     private val formatTime = SimpleDateFormat("hh:mm a")
     private val formatDate = SimpleDateFormat("EEE, d MMM yyyy")
     private val bookOnclickHandler = BookOnclickHandler()
@@ -43,10 +43,11 @@ class MeetingListActivity : BaseActivity(),
         HookProgressFormatter()
 
     lateinit var roomName: TextView
+    lateinit var binding: ActivityMeetingContentBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = DataBindingUtil.setContentView<ActivityMeetingContentBinding>(
+        binding = DataBindingUtil.setContentView<ActivityMeetingContentBinding>(
             this,
             R.layout.activity_meeting_content
         )
@@ -262,7 +263,7 @@ class MeetingListActivity : BaseActivity(),
                         val hoursEnd = dateEnd.hours
                         val minutesEnd = dateEnd.minutes
                         var minutesEndS: String
-                        minutesEndS=if(minutesStart>=10){
+                        minutesEndS=if(minutesEnd>=10){
                             minutesEnd.toString()
                         }else{
                             minutesEnd.toString()+"0"
@@ -291,9 +292,17 @@ class MeetingListActivity : BaseActivity(),
                 }
             }
             meetings.removeAll(deletedMeetings)
+            updateMeeting()
             recyclerView.adapter?.notifyDataSetChanged()
         }
         Log.d("MeetingList", response?.Events.toString())
+    }
+
+    private fun updateMeeting() {
+        binding.lineProgressBooked.max=0
+        binding.lineProgressWaiting.max=0
+        mapMeetings(binding)
+        updateMeetingStatus(binding)
     }
 
 

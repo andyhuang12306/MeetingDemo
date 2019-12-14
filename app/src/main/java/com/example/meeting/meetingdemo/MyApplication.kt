@@ -17,6 +17,7 @@ class MyApplication : Application(){
     private lateinit var requestQueue:RequestQueue
     private val REGISTER_API = "https://mrm.try.com.sg/api/device/reg"
     private val GET_DETAIL_API = "https://mrm.try.com.sg/api/device"
+    private val GET_CONFIRM_MEETING_API = "https://mrm.try.com.sg/api/device/confirme"
     private var token = ""
     private var pairCode = ""
 
@@ -57,6 +58,10 @@ class MyApplication : Application(){
 
     fun getDetailApi(): String{
         return GET_DETAIL_API
+    }
+
+    fun getConfirmMeetingApi(): String{
+        return GET_CONFIRM_MEETING_API
     }
 
     fun getSerialPort(): SerialPort? {

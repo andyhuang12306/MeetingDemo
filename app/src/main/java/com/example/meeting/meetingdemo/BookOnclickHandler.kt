@@ -10,6 +10,9 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.core.view.children
 import cn.bingoogolapple.qrcode.zxing.QRCodeEncoder
+import com.example.meeting.meetingdemo.activity.MeetingListActivity
+import com.example.meeting.meetingdemo.http.ConfirmMeetingTask
+import com.example.meeting.meetingdemo.http.RequestDetailTask
 import com.getbase.floatingactionbutton.FloatingActionsMenu
 import java.lang.Exception
 import java.util.*
@@ -37,6 +40,11 @@ class BookOnclickHandler() {
     fun onClickExtendMeeting(view: View) {
         (view.parent as FloatingActionsMenu).toggle()
         displayQRCode(view, "https://mrm.try.com.sg/")
+    }
+
+    fun onClickConfirm(view: View) {
+        val context = view.context as MeetingListActivity
+        ConfirmMeetingTask(context, context.meetings[0]._id).run()
     }
 
     fun onCLickDismiss(context: Context) {
